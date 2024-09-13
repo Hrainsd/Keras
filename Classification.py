@@ -58,14 +58,22 @@ print("test accuracy:", accuracy)
 # 可视化
 y_train_pred = model.predict(x_train)
 y_test_pred = model.predict(x_test)
+
+# 将真实的one-hot编码转换为类别标签
+y_train = np.argmax(y_train, axis=1)
+y_test = np.argmax(y_test, axis=1)
+# 将预测结果转换为类别标签
+y_train_pred = np.argmax(y_train_pred, axis=1)
+y_test_pred = np.argmax(y_test_pred, axis=1)
+
 plt.plot(y_train[:500], label='y_true', marker='o', markerfacecolor='none', linestyle='')
-plt.plot(y_train_pred[:500], label='y_true', marker='*', linestyle='')
+plt.plot(y_train_pred[:500], label='y_pred', marker='*', linestyle='')
 plt.legend()
 plt.title('Train(Accuracy:{:.4f}, Loss:{:.4f})'.format(train_accuracy, train_loss))
 plt.show()
 
 plt.plot(y_test[:500], label='y_true', marker='o', markerfacecolor='none', linestyle='')
-plt.plot(y_test_pred[:500], label='y_true', marker='*', linestyle='')
+plt.plot(y_test_pred[:500], label='y_pred', marker='*', linestyle='')
 plt.legend()
 plt.title('Test(Accuracy:{:.4f}, Loss:{:.4f})'.format(test_accuracy, test_loss))
 plt.show()
